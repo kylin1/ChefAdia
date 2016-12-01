@@ -18,7 +18,6 @@ import java.util.List;
 /**
  * Created by JiachenWang on 2016/8/18.
  */
-@SuppressWarnings("restriction")
 @Repository("postDao")
 @Transactional
 public class PostDaoImpl implements PostDao {

@@ -32,6 +32,7 @@ public class MybatisUtils {
         //构建sqlSession的工厂
         sessionFactory = new SqlSessionFactoryBuilder().build(is);
         sessionFactory.getConfiguration().addMapper(PostOperation.class);
+        sessionFactory.getConfiguration().addMapper(DishOperation.class);
     }
 
 }

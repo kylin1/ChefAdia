@@ -1,6 +1,7 @@
 package dao;
 
 import junit.framework.TestCase;
+import web.dao.impl.DishDaoImpl;
 import web.dao.impl.PostDaoImpl;
 import web.model.communication.Post;
 
@@ -10,8 +11,8 @@ import web.model.communication.Post;
 public class PostDaoImplTest extends TestCase {
 
     public void testGetAllPost() throws Exception {
-        PostDaoImpl test = new PostDaoImpl();
-        System.out.println(test.getAllPost().size());
+        DishDaoImpl dishDao = new DishDaoImpl();
+        System.out.println(dishDao.getAllDish().size());
     }
 
     public void testSearch() throws Exception {
