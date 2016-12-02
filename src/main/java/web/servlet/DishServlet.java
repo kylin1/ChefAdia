@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.biz.impl.DishManage;
 import web.model.Dish;
-import web.model.DishType;
+import web.model.DishMenu;
+import web.model.enums.DishType;
+import web.model.exceptions.NotFoundException;
 import web.tools.JsonConverter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,5 +53,28 @@ public class DishServlet{
     public String getPostList() throws JsonProcessingException {
         List postList = this.dishManage.getAllDish();
         return JsonConverter.jsonOfObject(postList);
+    }
+
+    @RequestMapping(
+            value = {"getMenu"},
+            method = {RequestMethod.GET}
+    )
+    @ResponseBody
+    public String getMenu() throws JsonProcessingException {
+        List<DishMenu> menus = this.dishManage.getMenuCategory();
+        return JsonConverter.jsonOfObject(menus);
+    }
+
+    @RequestMapping(
+            value = {"getList"},
+            method = {RequestMethod.GET}
+    )
+    @ResponseBody
+    public String getDishListInMenu(HttpServletRequest request) throws JsonProcessingException, NotFoundException {
+        String menuid = request.getParameter("menuid");
+        int id = Integer.parseInt(menuid);
+        System.out.println("in servlet menuid="+id);
+        List<Dish> menus = this.dishManage.getDishInMenu(id);
+        return JsonConverter.jsonOfObject(menus);
     }
 }

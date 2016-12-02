@@ -12,6 +12,8 @@ import web.dao.DishDao;
 import web.dao.util.DishOperation;
 import web.dao.util.MybatisUtils;
 import web.model.Dish;
+import web.model.DishMenu;
+import web.model.exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +32,11 @@ public class DishDaoImpl implements DishDao {
 
         try {
             this.session = MybatisUtils.getSession();
-            this.dishOperation = (DishOperation)this.session.getMapper(DishOperation.class);
+            this.dishOperation = this.session.getMapper(DishOperation.class);
             list = this.dishOperation.getAllPost();
             this.session.commit();
-        } catch (Exception var6) {
-            var6.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
             this.session.rollback();
         } finally {
             this.session.close();
@@ -47,7 +49,7 @@ public class DishDaoImpl implements DishDao {
         boolean var3;
         try {
             this.session = MybatisUtils.getSession();
-            this.dishOperation = (DishOperation)this.session.getMapper(DishOperation.class);
+            this.dishOperation = this.session.getMapper(DishOperation.class);
             this.dishOperation.save(dish);
             this.session.commit();
             return true;
@@ -60,5 +62,42 @@ public class DishDaoImpl implements DishDao {
         }
 
         return var3;
+    }
+
+    @Override
+    public List<DishMenu> getDishMenu() {
+        List<DishMenu>  list = new ArrayList<>();
+
+        try {
+            this.session = MybatisUtils.getSession();
+            this.dishOperation = this.session.getMapper(DishOperation.class);
+            list = this.dishOperation.getDishMenu();
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+        } finally {
+            this.session.close();
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Dish> getDishByType(int menuId) throws NotFoundException {
+        List<Dish> result = new ArrayList<>();
+        try {
+            this.session = MybatisUtils.getSession();
+            this.dishOperation = this.session.getMapper(DishOperation.class);
+            result= this.dishOperation.getDishOfType(menuId);
+            this.session.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.session.rollback();
+            throw new NotFoundException("菜单下面没有菜品!");
+        } finally {
+            this.session.close();
+        }
+        return result;
     }
 }

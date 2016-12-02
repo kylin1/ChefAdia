@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package web.model;
+package web.model.enums;
 
 public enum DishType {
     TYPE1("type1"),

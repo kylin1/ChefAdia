@@ -5,8 +5,9 @@
 
 package web.model;
 
+import web.model.enums.DishType;
+
 import java.io.File;
-import web.model.DishType;
 
 public class Dish {
     private String name;

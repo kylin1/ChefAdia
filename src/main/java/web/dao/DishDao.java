@@ -5,11 +5,18 @@
 
 package web.dao;
 
-import java.util.List;
 import web.model.Dish;
+import web.model.DishMenu;
+import web.model.exceptions.NotFoundException;
+
+import java.util.List;
 
 public interface DishDao {
     List<Dish> getAllDish();
 
     boolean addDish(Dish var1);
+
+    List<DishMenu> getDishMenu();
+
+    List<Dish> getDishByType(int menuId) throws NotFoundException;
 }
