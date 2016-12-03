@@ -9,8 +9,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonConverter {
-    public JsonConverter() {
-    }
 
     public static String jsonOfObject(Object object) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

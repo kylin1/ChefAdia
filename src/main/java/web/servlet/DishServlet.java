@@ -1,6 +1,5 @@
 package web.servlet;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +10,14 @@ import web.model.Dish;
 import web.model.DishMenu;
 import web.model.enums.DishType;
 import web.model.exceptions.NotFoundException;
-import web.tools.JsonConverter;
+import web.tools.MyResponse;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
-public class DishServlet{
+public class DishServlet {
 
     @Autowired
     private DishManage dishManage;
@@ -28,21 +26,25 @@ public class DishServlet{
     }
 
     @RequestMapping(value = "addDish.do", method = RequestMethod.POST)
-    public @ResponseBody
-    Map<String, String> demo(HttpServletRequest request) throws JsonProcessingException {
-        Map<String, String> map = new HashMap<>();
+    public
+    @ResponseBody
+    String demo(HttpServletRequest request) {
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String price = request.getParameter("price");
-        double doublePrice = Double.parseDouble(price);
-        DishType dishType = DishType.getDishType(type);
-        Dish dish = new Dish();
-        dish.setName(name);
-        dish.setType(dishType);
-        dish.setPrice(doublePrice);
-        this.dishManage.addDish(dish);
-        map.put("result",JsonConverter.jsonOfObject(Boolean.TRUE));
-        return map;
+
+        try {
+            double doublePrice = Double.parseDouble(price);
+            DishType dishType = DishType.getDishType(type);
+            Dish dish = new Dish();
+            dish.setName(name);
+            dish.setType(dishType);
+            dish.setPrice(doublePrice);
+            this.dishManage.addDish(dish);
+            return MyResponse.success(Boolean.TRUE);
+        } catch (Exception ex) {
+            return MyResponse.failure("0001", "add dish failed, please try again", Boolean.TRUE);
+        }
     }
 
     @RequestMapping(
@@ -50,9 +52,9 @@ public class DishServlet{
             method = {RequestMethod.GET}
     )
     @ResponseBody
-    public String getPostList() throws JsonProcessingException {
+    public String getPostList() {
         List postList = this.dishManage.getAllDish();
-        return JsonConverter.jsonOfObject(postList);
+        return MyResponse.success(postList);
     }
 
     @RequestMapping(
@@ -60,9 +62,9 @@ public class DishServlet{
             method = {RequestMethod.GET}
     )
     @ResponseBody
-    public String getMenu() throws JsonProcessingException {
+    public String getMenu() {
         List<DishMenu> menus = this.dishManage.getMenuCategory();
-        return JsonConverter.jsonOfObject(menus);
+        return MyResponse.success(menus);
     }
 
     @RequestMapping(
@@ -70,11 +72,16 @@ public class DishServlet{
             method = {RequestMethod.GET}
     )
     @ResponseBody
-    public String getDishListInMenu(HttpServletRequest request) throws JsonProcessingException, NotFoundException {
+    public String getDishListInMenu(HttpServletRequest request) {
         String menuid = request.getParameter("menuid");
         int id = Integer.parseInt(menuid);
-        System.out.println("in servlet menuid="+id);
-        List<Dish> menus = this.dishManage.getDishInMenu(id);
-        return JsonConverter.jsonOfObject(menus);
+        try {
+            List<Dish> menus = this.dishManage.getDishInMenu(id);
+            return MyResponse.success(menus);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return MyResponse.failure("0002",
+                    "sorry, we do not serve this type of food currently",new ArrayList<>());
+        }
     }
 }
