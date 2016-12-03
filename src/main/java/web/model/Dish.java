@@ -7,15 +7,13 @@ package web.model;
 
 import web.model.enums.DishType;
 
-import java.io.File;
-
 public class Dish {
     private String name;
     private DishType type;
     private double price;
     private int like;
     private int dislike;
-    private File image;
+    private String imagePath;
 
     public Dish() {
     }
@@ -60,11 +58,11 @@ public class Dish {
         this.dislike = dislike;
     }
 
-    public File getImage() {
-        return this.image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

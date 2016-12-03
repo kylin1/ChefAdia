@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import web.biz.impl.DishManage;
+import web.biz.IDishManage;
 import web.model.Dish;
 import web.model.DishMenu;
 import web.model.enums.DishType;
@@ -20,12 +20,12 @@ import java.util.List;
 public class DishServlet {
 
     @Autowired
-    private DishManage dishManage;
+    private IDishManage dishManage;
 
     @RequestMapping(value = "addDish.do", method = RequestMethod.POST)
     public
     @ResponseBody
-    String demo(HttpServletRequest request) {
+    String addDish(HttpServletRequest request) {
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String price = request.getParameter("price");
