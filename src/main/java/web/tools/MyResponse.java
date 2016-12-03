@@ -8,6 +8,12 @@ import org.json.JSONObject;
  */
 public class MyResponse {
 
+    /**
+     * 获取数据正常返回json字符串
+     *
+     * @param data 数据
+     * @return JSON数据
+     */
     public static String success(Object data){
         JSONObject object = new JSONObject();
         object.put("condition","success");
@@ -15,6 +21,14 @@ public class MyResponse {
         return object.toString();
     }
 
+    /**
+     * 获取数据异常，返回错误提示信息
+     *
+     * @param errorCode 错误代码
+     * @param message 用户提示信息
+     * @param data 数据
+     * @return JSON数据
+     */
     public static String failure(String errorCode,String message,Object data){
         JSONObject object = new JSONObject();
         object.put("condition","fail");

@@ -22,10 +22,6 @@ public class DishServlet {
     @Autowired
     private DishManage dishManage;
 
-    public DishServlet() {
-        String x = "test";
-    }
-
     @RequestMapping(value = "addDish.do", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -82,7 +78,7 @@ public class DishServlet {
         } catch (NotFoundException e) {
             e.printStackTrace();
             return MyResponse.failure("0002",
-                    "sorry, we do not serve this type of food currently",new ArrayList<>());
+                    "sorry, we do not serve this type of food currently", new ArrayList<>());
         }
     }
 }
