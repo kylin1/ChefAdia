@@ -23,6 +23,7 @@ public class DishServlet {
     private DishManage dishManage;
 
     public DishServlet() {
+        String x = "test";
     }
 
     @RequestMapping(value = "addDish.do", method = RequestMethod.POST)
