@@ -6,6 +6,8 @@ package web.model;
  */
 public class User {
 
+    private int id;
+
     private String username;
 
     private String password;
@@ -64,5 +66,9 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
     }
 }

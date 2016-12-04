@@ -1,6 +1,7 @@
 package web.dao;
 
 import web.model.User;
+import web.model.exceptions.NotFoundException;
 import web.tools.MyMessage;
 
 import java.util.List;
@@ -35,13 +36,12 @@ public interface UserDao {
     User getUser(int id);
 
    /**
-     * 验证是否棉麻正确
+     * 验证密码是否正确
      *
      * @param email
-     * @param password
      * @return
      */
-    MyMessage checkUser(String email, String password);
+   User getUserByMail(String email) throws NotFoundException;
 
     /**
      * 注册

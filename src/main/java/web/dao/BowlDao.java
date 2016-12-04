@@ -26,4 +26,11 @@ public interface BowlDao {
      * @return
      */
     MyMessage updateBowl(Bowl bowl);
+
+    /**
+     * 增加一个碗
+     *
+     * @return
+     */
+    MyMessage addBowl(Bowl bowl);
 }
