@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package web.dao.util;
+package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -13,10 +13,10 @@ import web.model.DishMenu;
 import java.util.List;
 
 public interface DishOperation {
-    @Select({"select * from dish"})
+    @Select({"select * from food"})
     List<Dish> getAllPost();
 
-    @Insert({"insert into dish(name,type,price)" +
+    @Insert({"insert into food(name,type,price)" +
             " values(#{name},#{type},#{price})"})
     void save(Dish var1);
 

@@ -12,6 +12,7 @@ import web.model.exceptions.NotFoundException;
 import java.util.List;
 
 public interface DishDao {
+
     List<Dish> getAllDish();
 
     boolean addDish(Dish var1);

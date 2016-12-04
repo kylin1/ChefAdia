@@ -1,4 +1,4 @@
-package web.dao.util;
+package web.dao.opearion;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

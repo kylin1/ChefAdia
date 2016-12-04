@@ -23,7 +23,7 @@ public class JsonTest {
     @Test
     public void testJsonFail() throws JsonProcessingException {
         DishDao dishDao = new DishDaoImpl();
-        String result = MyResponse.failure("0001","not found",dishDao.getAllDish());
+        String result = MyResponse.failure("0001","not found", dishDao.getAllDish());
         System.out.println(result);
 
     }

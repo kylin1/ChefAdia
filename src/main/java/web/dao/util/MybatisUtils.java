@@ -3,6 +3,8 @@ package web.dao.util;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import web.dao.opearion.DishOperation;
+import web.dao.opearion.PostOperation;
 
 import java.io.InputStream;
 

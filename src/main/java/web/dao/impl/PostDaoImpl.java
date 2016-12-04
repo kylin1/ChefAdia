@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.PostDao;
 import web.dao.util.MybatisUtils;
-import web.dao.util.PostOperation;
+import web.dao.opearion.PostOperation;
 import web.model.communication.Post;
 import web.model.communication.PostComment;
 import web.model.communication.PostViews;

@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.DishDao;
-import web.dao.util.DishOperation;
+import web.dao.opearion.DishOperation;
 import web.dao.util.MybatisUtils;
 import web.model.Dish;
 import web.model.DishMenu;

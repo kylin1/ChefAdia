@@ -2,8 +2,6 @@ package dao;
 
 import junit.framework.TestCase;
 import web.dao.impl.DishDaoImpl;
-import web.dao.impl.PostDaoImpl;
-import web.model.communication.Post;
 
 /**
  * Created by JiachenWang on 2016/8/30.
